@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Users, Clock, Armchair, Star, RefreshCw, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageShell, SimBadge } from "@/components/nutri/PageShell";
+import { FeedbackList } from "@/components/nutri/FeedbackList";
 import { avgRating, patternFor, simulateCrowdChange, useNutri } from "@/lib/nutri-store";
 
 export const Route = createFileRoute("/dashboard")({
@@ -105,6 +106,10 @@ function DashboardPage() {
             Based on {feedback.length} student responses collected today.
           </p>
         </section>
+      </div>
+
+      <div className="mt-5">
+        <FeedbackList feedback={feedback} />
       </div>
 
       <section className="card-soft mt-5 p-5 sm:p-6">

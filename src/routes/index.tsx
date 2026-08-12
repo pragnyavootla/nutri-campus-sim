@@ -12,7 +12,14 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { PageShell, SimBadge } from "@/components/nutri/PageShell";
-import { addFeedback, simulateCrowdChange, STATUS_LABEL, useNutri } from "@/lib/nutri-store";
+import {
+  addFeedback,
+  FEEDBACK_CATEGORIES,
+  simulateCrowdChange,
+  STATUS_LABEL,
+  useNutri,
+  type FeedbackCategory,
+} from "@/lib/nutri-store";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
@@ -53,6 +60,7 @@ function StudentPage() {
   const [open, setOpen] = useState(false);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
+  const [category, setCategory] = useState<FeedbackCategory>("Food");
   const [submitted, setSubmitted] = useState(false);
 
   const pct = Math.round((live.crowd / live.capacity) * 100);
@@ -169,6 +177,7 @@ function StudentPage() {
                 setSubmitted(false);
                 setRating(0);
                 setComment("");
+                setCategory("Food");
               }}
             >
               <MessageSquare className="size-4" /> Give Feedback
@@ -209,6 +218,23 @@ function StudentPage() {
                   </button>
                 ))}
               </div>
+              <div className="flex flex-wrap gap-2">
+                {FEEDBACK_CATEGORIES.map((c) => (
+                  <button
+                    key={c}
+                    type="button"
+                    onClick={() => setCategory(c)}
+                    className={cn(
+                      "rounded-full border border-border px-3 py-1.5 text-xs font-semibold transition-colors",
+                      category === c
+                        ? "border-primary bg-primary text-primary-foreground"
+                        : "bg-card text-foreground hover:bg-muted",
+                    )}
+                  >
+                    {c}
+                  </button>
+                ))}
+              </div>
               <Textarea
                 placeholder="Optional comment (e.g. queue was long at 1 PM)"
                 value={comment}
@@ -224,7 +250,7 @@ function StudentPage() {
               <Button
                 disabled={rating === 0}
                 onClick={() => {
-                  addFeedback(rating, comment);
+                  addFeedback(rating, comment, category);
                   setSubmitted(true);
                 }}
               >
