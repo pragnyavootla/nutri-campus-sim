@@ -60,6 +60,7 @@ function StudentPage() {
   const [open, setOpen] = useState(false);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
+  const [category, setCategory] = useState<FeedbackCategory>("Food");
   const [submitted, setSubmitted] = useState(false);
 
   const pct = Math.round((live.crowd / live.capacity) * 100);
