@@ -74,12 +74,12 @@ function DashboardPage() {
             {pattern.map((p) => (
               <div key={p.time} className="flex flex-1 flex-col items-center gap-2">
                 <span className="text-xs font-semibold text-foreground">{p.value}%</span>
-                <div className="flex h-full w-full items-end">
+                <div className="flex h-44 w-full items-end">
                   <div
                     className={`w-full rounded-t-lg transition-all duration-700 ease-out ${
                       p.value === peak ? "bg-primary" : "bg-accent"
                     }`}
-                    style={{ height: `${p.value}%` }}
+                    style={{ height: `${Math.max(6, p.value * 1.7)}px` }}
                   />
                 </div>
                 <span className="text-[11px] text-muted-foreground">{p.time}</span>
