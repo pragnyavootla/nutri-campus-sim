@@ -34,7 +34,7 @@ type State = {
 };
 
 let state: State = {
-  live: CROWD_STATES[2],
+  live: CROWD_STATES[2]!,
   feedback: [
     { rating: 5, comment: "Food was fresh today.", at: Date.now() - 7200000 },
     { rating: 4, comment: "Queue was long around 1 PM.", at: Date.now() - 5400000 },
@@ -52,7 +52,7 @@ function emit() {
 
 export function simulateCrowdChange() {
   const options = CROWD_STATES.filter((s) => s.status !== state.live.status);
-  const next = options[Math.floor(Math.random() * options.length)];
+  const next = options[Math.floor(Math.random() * options.length)]!;
   state = { ...state, live: next, lastUpdated: Date.now() };
   emit();
 }
