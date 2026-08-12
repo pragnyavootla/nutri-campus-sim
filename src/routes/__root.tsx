@@ -152,7 +152,8 @@ function Navbar() {
               className="rounded-full px-3.5 py-1.5 text-sm font-medium whitespace-nowrap text-muted-foreground transition-colors hover:text-foreground"
               activeProps={{ className: "bg-card text-primary shadow-sm" }}
             >
-              {item.label}
+              <span className="inline sm:hidden">{item.mobileLabel}</span>
+              <span className="hidden sm:inline">{item.label}</span>
             </Link>
           ))}
         </nav>
