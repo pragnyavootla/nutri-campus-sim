@@ -121,9 +121,9 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 const navItems = [
-  { to: "/", label: "Student" },
-  { to: "/dashboard", label: "College Dashboard" },
-  { to: "/about", label: "About System" },
+  { to: "/", label: "Student", mobileLabel: "Student" },
+  { to: "/dashboard", label: "College Dashboard", mobileLabel: "Dashboard" },
+  { to: "/about", label: "About System", mobileLabel: "About" },
 ] as const;
 
 function Navbar() {
